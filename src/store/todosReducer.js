@@ -1,5 +1,3 @@
-import {act} from "@testing-library/react";
-
 let id = 2;
 const initialState = [{
         id: 1,

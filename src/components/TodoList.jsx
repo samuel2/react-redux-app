@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import {UPDATE_TODO_ACTION} from "../store/todosReducer";
 import {todosSelectors} from "../store/todosSelectors";
 import {toggleTodoAction} from "../store/todosActions";
 
