@@ -1,3 +1,5 @@
+import { ADD_TODO_ACTION, UPDATE_TODO_ACTION, DELETE_TODO_ACTION } from "../constants";
+
 let id = 2;
 const initialState = [{
         id: 1,
@@ -10,10 +12,6 @@ const initialState = [{
         completed: true
     }
 ];
-
-export const ADD_TODO_ACTION = 'ADD_TODO_ACTION';
-export const UPDATE_TODO_ACTION = 'UPDATE_TODO_ACTION';
-export const DELETE_TODO_ACTION = 'DELETE_TODO_ACTION';
 
 export function todosReducer(state = initialState, action) {
     switch (action.type) {

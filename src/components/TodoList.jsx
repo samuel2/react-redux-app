@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {todosSelectors} from "../store/todosSelectors";
-import {deleteTodoAction, toggleTodoAction} from "../store/todosActions";
+import {todosSelectors} from "../redux/store/todosSelectors";
+import {deleteTodoAction, toggleTodoAction} from "../redux/actions/todosActions";
 
 function TodoItem({todo, onToggle, onDelete}) {
     return (
@@ -15,21 +15,27 @@ function TodoItem({todo, onToggle, onDelete}) {
     );
 }
 
-export function TodoList () {
-    const todos = useSelector(todosSelectors);
-    const dispatch = useDispatch();
-    const onToggle = useCallback((todo) => {
-        dispatch(toggleTodoAction(todo))
-    }, [dispatch]);
-    const onDelete = useCallback((todo) => {
-        dispatch(deleteTodoAction(todo))
-    }, [dispatch]);
-
+export function TodoList ({todos, onToggle, onDelete}) {
     return (
         <ul>
             {todos.map(todo => <TodoItem todo={todo} onToggle={onToggle} onDelete={onDelete} key={todo.id} />)}
         </ul>
     );
+}
+
+export function TodoListStore() {
+    const todos = useSelector(todosSelectors);
+    const dispatch = useDispatch();
+    
+    const onToggle = useCallback((todo) => {
+        dispatch(toggleTodoAction(todo))
+    }, [dispatch]);
+    
+    const onDelete = useCallback((todo) => {
+        dispatch(deleteTodoAction(todo))
+    }, [dispatch]);
+    
+    return <TodoList todos={todos} onToggle={onToggle} onDelete={onDelete} />
 }
 
 /*
